@@ -12,35 +12,22 @@ var bodyParser = require('body-parser');
 //postgresql
 const pg = require('pg')
 const conString = 'postgres://coreyharrilal:Ironman1234@localhost/corey_db' // make sure to match your own database's credentials
-
 var pgtest = require('pgtest');
+var format = require('pg-format');
 
 
-//Create tables
-function createTable(){
+var regionData = require('./region/region_dummy_data');
+var createRegionsTable = require('./region/region')
+
+console.log(regionData);
+
+//Create region table and then insert data
+createRegionsTable(function(){
     pg.connect(conString, function (err, client, done) {
       if (err) {
         return console.error('error fetching client from pool', err)
       }
-      client.query('CREATE TABLE test_table(   age integer   );', function (err, result) {
-        done()
-
-        if (err) {
-          return console.error('error happened during query', err)
-        }
-        // console.log(result.row[0]);
-        process.exit(0)
-      })
-    })
-}
-
-//Insert data
-function insertData(){
-    pg.connect(conString, function (err, client, done) {
-      if (err) {
-        return console.error('error fetching client from pool', err)
-      }
-      client.query('INSERT INTO test_table VALUES ($1);', [100], function (err, result) {
+      client.query(format('INSERT INTO regions (name, B_X, B_Y, T_X, T_Y, Pk_Region_Id) VALUES %L', regionData), function (err, result) {
         done()
 
         if (err) {
@@ -50,25 +37,7 @@ function insertData(){
         process.exit(0)
       })
     })
-}
-
-//Testing
-function testData(){
-    pgtest.expect('SELECT * FROM test_table').returning(null, [
-    [ 1000 ],
-    ["hello"]
-]);
-    pgtest.connect(conString, function (err, client, done) {
-        client.query('SELECT * FROM test_table', function (err, data) {
-            console.log("here is the data");
-            console.log(data);
-            done();
-        });
-    });
-
-    pgtest.check(); //No errors
-
-}
+});
 
 app.listen(process.env.PORT || port, function() {
     console.log("app running");
