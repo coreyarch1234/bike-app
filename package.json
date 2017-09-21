@@ -1,0 +1,26 @@
+{
+  "name": "bike-app",
+  "version": "1.0.0",
+  "description": "to grab bikes from regions",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coreyarch1234/bike-app.git"
+  },
+  "author": "corey harrilal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/coreyarch1234/bike-app/issues"
+  },
+  "homepage": "https://github.com/coreyarch1234/bike-app#readme",
+  "dependencies": {
+    "body-parser": "^1.18.1",
+    "express": "^4.15.4",
+    "express-handlebars": "^3.0.0",
+    "pg": "^6.4.2",
+    "pgtest": "^0.2.2"
+  }
+}
