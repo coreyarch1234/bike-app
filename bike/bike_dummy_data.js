@@ -6,7 +6,7 @@ var exphbs  = require('express-handlebars');
 // - Pk_Bike_Id INT PRIMARY KEY
 // - X_Coord INT
 // - Y_Coord INT
-// - Fk_Region_Id INT FOREIGN KEY REFERENCES regions(Pk_Region_Id)
+// - Pk_Region_Id INT REFERENCES regions(Pk_Region_Id)
 
 //Feel Free to add new bikes
 var bikeValues = [
