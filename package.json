@@ -22,6 +22,7 @@
     "express-handlebars": "^3.0.0",
     "pg": "^6.4.2",
     "pg-format": "^1.0.4",
-    "pgtest": "^0.2.2"
+    "pgtest": "^0.2.2",
+    "prompt": "^1.0.0"
   }
 }
